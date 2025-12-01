@@ -4,13 +4,15 @@ import viteLogo from '/vite.svg'
 // import './App.css'
 // import users from './components/User'
 import AllUsers from './components/AllUser'
+import Register from './components/Register'
 
 function App() {
 
   return (
     <>
      {/* <users/> */}
-     <AllUsers/>
+     {/* <AllUsers/> */}
+     <Register/>
     </>
   )
 }
