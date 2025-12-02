@@ -10,16 +10,16 @@ export default function Register()
     const [successMsg,setSuccessMsg]=useState("");
 
     const handleChange=(e)=>{
-        setformData({...FormData,[e.target.value]:e.target.value})
+        setformData({...formData,[e.target.value]:e.target.value})
     }
 
     const validate=()=>{
         let newErrors={};
-        if(!FormData.uname) newErrors.uname='Name is required';
-        if(!FormData.uemail) newErrors.uemail='Email is required';
-        if(!FormData.upass) newErrors.upass='Password is required';
-        if(!FormData.ucpass) newErrors.ucpass='Confirm Password is required';
-        if(FormData.upass!==FormData.ucpass) newErrors.ucpass='Password And Confirm Password Does Not Match'
+        if(!formData.uname) newErrors.uname='Name is required';
+        if(!formData.uemail) newErrors.uemail='Email is required';
+        if(!formData.upass) newErrors.upass='Password is required';
+        if(!formData.ucpass) newErrors.ucpass='Confirm Password is required';
+        if(formData.upass!==formData.ucpass) newErrors.ucpass='Password And Confirm Password Does Not Match'
         return newErrors;
     }
 
@@ -41,18 +41,25 @@ export default function Register()
         <>
         <center>
             <h1>Register Form </h1>
-            <form action="">
+            <form onSubmit={handleSubmit}>
+
+            {successMsg &&  <h2><mark>{successMsg}</mark></h2>}
+
                 <label>Enter Name </label>
-                <input type="text" name="uname" />
+                <input type="text" name="uname" onChange={handleChange} />
+                {errors.uname && <p><mark>{errors.uname}</mark></p>}
                 <br /><br />
                 <label>Enter Email </label>
-                <input type="text" name="uemail"/>
+                <input type="text" name="uemail" onChange={handleChange}/>
+                {errors.uemail && <p><mark>{errors.uemail}</mark></p>}
                 <br /><br />
                 <label>Enter Password </label>
-                <input type="text" name="upass"/>
+                <input type="text" name="upass" onChange={handleChange}/>
+                {errors.upass && <p><mark>{errors.upass}</mark></p>}
                 <br /><br />
                 <label>Enter Confirm Password </label>
-                <input type="text" name="ucpass"/>
+                <input type="text" name="ucpass" onChange={handleChange}/>
+                {errors.ucpass && <p><mark>{errors.ucpass}</mark></p>}
                 <br /><br />
                 <input type="submit" value={"Submit"} />
                 <input type="reset" value={"Cancle"} />
