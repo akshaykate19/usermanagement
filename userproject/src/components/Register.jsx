@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export default function Register()
 {
-    const [fromData,setformData]=useState({
+    const [formData,setformData]=useState({
         uname:"",uemail:"",upass:"",ucpass:""
     })
 
@@ -10,7 +10,7 @@ export default function Register()
     const [successMsg,setSuccessMsg]=useState("");
 
     const handleChange=(e)=>{
-        setformData({...formData,[e.target.value]:e.target.value})
+        setformData({...formData,[e.target.name]:e.target.value})
     }
 
     const validate=()=>{
@@ -27,7 +27,7 @@ export default function Register()
         e.preventDefault();
         const validateErrors=validate();
         setErrors(validateErrors);
-        if(Object.keys(validatesErrors).length===0)
+        if(Object.keys(validateErrors).length===0)
         {
             setSuccessMsg("Registration done successfully");
         }
@@ -54,15 +54,15 @@ export default function Register()
                 {errors.uemail && <p><mark>{errors.uemail}</mark></p>}
                 <br /><br />
                 <label>Enter Password </label>
-                <input type="text" name="upass" onChange={handleChange}/>
+                <input type="password" name="upass" onChange={handleChange}/>
                 {errors.upass && <p><mark>{errors.upass}</mark></p>}
                 <br /><br />
                 <label>Enter Confirm Password </label>
-                <input type="text" name="ucpass" onChange={handleChange}/>
+                <input type="password" name="ucpass" onChange={handleChange}/>
                 {errors.ucpass && <p><mark>{errors.ucpass}</mark></p>}
                 <br /><br />
                 <input type="submit" value={"Submit"} />
-                <input type="reset" value={"Cancle"} />
+                <input type="reset" value={"Cancel"} />
             </form>
             </center>
         </>
